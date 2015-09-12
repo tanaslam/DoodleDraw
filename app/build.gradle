@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.crystalcube.android.doodledraw"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // duplicate files in spring core and rest-template libs
+    packagingOptions {
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+    }
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName android.defaultConfig.applicationId
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.0.1'
+
+    // AA dependencies
+    apt "org.androidannotations:androidannotations:3.2"
+    compile 'org.androidannotations:androidannotations-api:3.2'
+
+    // Testing-only dependencies
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+
+}

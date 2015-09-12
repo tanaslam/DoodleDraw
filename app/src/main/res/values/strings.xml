@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DoodleDraw</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="prompt_setting">Some application specific settings</string>
+    <string name="action_clear">clear</string>
+    <string name="action_save">Save</string>
+    <string name="bitmap_saved">Doogle saved!</string>
+</resources>
